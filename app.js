@@ -615,6 +615,8 @@ function loadGoodreads(input){
             }
             allBooks.sort(function(a,b){return a[0]-b[0];});
             renderShelf(groupByEra(allBooks));
+            history.replaceState(null,'',location.pathname+'?u='+userId);
+            document.getElementById('share-btn').style.display='';
             done();
           }
         }).catch(function(err){alert('Failed to load: '+err.message);done();});
@@ -680,5 +682,22 @@ document.getElementById('gr-input').addEventListener('keydown',function(e){
   if(e.key==='Enter')loadGoodreads(this.value.trim());
 });
 
+document.getElementById('share-btn').addEventListener('click',function(){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var btn=document.getElementById('share-btn');
+    btn.textContent='Copied!';
+    setTimeout(function(){btn.textContent='Copy link';},1500);
+  });
+});
+
 // ── Init ──
-requestAnimationFrame(renderEmptyShelf);
+requestAnimationFrame(function(){
+  var params=new URLSearchParams(location.search);
+  var uid=params.get('u');
+  if(uid){
+    document.getElementById('gr-input').value=uid;
+    loadGoodreads(uid);
+  }else{
+    renderEmptyShelf();
+  }
+});
