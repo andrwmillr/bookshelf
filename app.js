@@ -456,8 +456,11 @@ function renderEmptyShelf(){
       +'<div style="position:absolute;bottom:5px;left:6px;width:8px;height:28px;background:linear-gradient(180deg,#e8e0d0,#d8d0c0);border-radius:1px;"></div>'
       +'<div style="position:absolute;bottom:34px;left:8px;width:4px;height:7px;background:radial-gradient(ellipse,#f0c040,#e08020 60%,transparent 70%);border-radius:50% 50% 30% 30%;filter:blur(0.5px);"></div>'
       +'</div>'],
-    [1,0.5,'<div style="text-align:center;color:rgba(255,255,255,0.12);font-size:11px;letter-spacing:0.05em;line-height:1.6;padding:0 20px;">'
-      +'enter your Goodreads username<br>to build your shelf'
+    [1,0.5,'<div style="position:relative;width:90px;">'
+      +'<div style="background:linear-gradient(180deg,#3a3020,#2e2618);border:1px solid rgba(180,160,120,0.15);border-radius:2px;padding:5px 6px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.3);">'
+      +'<div style="color:rgba(200,180,140,0.5);font-size:5.5px;letter-spacing:0.08em;line-height:1.5;font-family:Georgia,serif;">enter your Goodreads<br>username to build<br>your shelf</div>'
+      +'</div>'
+      +'<div style="position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:2px;height:8px;background:#2e2618;"></div>'
       +'</div>'],
     [1,0.88,'<div style="position:relative;width:24px;height:34px;">'
       +'<div style="position:absolute;bottom:0;left:4px;width:16px;height:20px;background:linear-gradient(180deg,#3a3a3a,#2a2a2a);border-radius:8px 8px 4px 4px;"></div>'
@@ -502,7 +505,7 @@ function renderEmptyShelf(){
       if(d[0]!==r)return;
       var wrap=document.createElement('div');
       wrap.style.cssText='position:absolute;bottom:0;left:'+Math.round(d[1]*contentW)+'px;';
-      if(d[1]===0.5&&r===1)wrap.style.cssText='position:absolute;bottom:50%;left:50%;transform:translate(-50%,50%);';
+      if(d[1]===0.5&&r===1)wrap.style.cssText='position:absolute;bottom:0;left:50%;transform:translateX(-50%);';
       wrap.innerHTML=d[2];
       booksDiv.appendChild(wrap);
     });
